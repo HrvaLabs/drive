@@ -1,0 +1,10 @@
+/* TEAM */
+Developer: Karlo Hrvačić
+Contact: git [at] hrva.cc
+Site: https://drive.hrva.cc
+
+/* SITE */
+Last update: 2026-06-07
+Standards: HTML5, CSS3, JSON-LD
+Components: React, Vite, TypeScript, Leaflet, Recharts, Spring Boot, FastAPI
+Purpose: Turn OBD2 Car Scanner drive logs into a readable drive report.

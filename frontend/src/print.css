@@ -1,0 +1,31 @@
+/* Print / "Save as PDF" — the cockpit theme is light text on dark surfaces, but
+   browsers don't print background colors, so a naive print would be near-invisible
+   light text on white paper. Re-point the theme variables to an ink-on-paper palette
+   for print only; var() resolves at use time, so the whole UI flips with no per-
+   component edits. Controls (.no-print) are dropped from the report. */
+@media print {
+  .no-print { display: none !important; }
+
+  :root {
+    --bg: #ffffff; --bg-2: #ffffff; --surface: #ffffff; --surface-2: #ffffff;
+    --line: #d4d4d8; --line-strong: #a1a1aa;
+    --text: #18181b; --muted: #3f3f46; --faint: #52525b;
+    --accent: #b45309; --good: #15803d; --warn: #a16207; --bad: #b91c1c; --data: #1d4ed8;
+    --shadow: none;
+  }
+
+  body { background: #fff !important; }
+  body::before, body::after { display: none !important; } /* drop the grid + grain */
+  .app__header::after { display: none !important; }       /* drop the tach tick strip */
+  .app__header { border-bottom: 1px solid var(--line-strong); }
+  .hero::before { display: none !important; }              /* drop the dial arc */
+  .gauge { filter: none !important; animation: none !important; }
+  .leaflet-tile-pane { filter: none !important; }           /* print real map tiles */
+  .app { max-width: 100% !important; padding: 0 !important; }
+  .dash { gap: 12px !important; }
+  .dash > section, .dash > .card { animation: none !important; }
+  .card, .dash > section { break-inside: avoid; box-shadow: none !important; }
+  .kpi, .best, .tip, .drive-row, .vehicle__vin { box-shadow: none !important; }
+  .score__big { text-shadow: none !important; }
+  .best__value { text-shadow: none !important; }
+}

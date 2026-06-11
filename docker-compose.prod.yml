@@ -1,0 +1,48 @@
+# HrvaDrive — production stack for Portainer.
+#
+# Paste this whole file into a Portainer "Stack" (Stacks → Add stack → Web editor).
+# It pulls the prebuilt images from GHCR — no building needed. Only the frontend is
+# published; it proxies /api to the analysis service over the internal network.
+#
+# Prereqs:
+#   • The GHCR packages must be reachable. If they're public, nothing to do. If private,
+#     in Portainer add a Registry (ghcr.io) with a GitHub token that has read:packages,
+#     or run `docker login ghcr.io` on the host first.
+#   • Point your reverse proxy (Traefik / Nginx Proxy Manager) for drive.hrva.cc at the
+#     published frontend port below (host 8090). HTTPS is terminated by that proxy.
+#
+# Update later: in Portainer, "Pull and redeploy" (images are tagged :latest).
+
+name: hrva-drive
+
+services:
+  analysis:
+    container_name: hrva-drive-analysis
+    image: ghcr.io/karlohrvacic/hrva-drive-analysis:latest
+    restart: unless-stopped
+    networks:
+      - hrva-drive-internal-data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health').status==200 else 1)"]
+      interval: 15s
+      timeout: 3s
+      retries: 5
+
+  frontend:
+    container_name: hrva-drive-frontend
+    image: ghcr.io/karlohrvacic/hrva-drive-frontend:latest
+    restart: unless-stopped
+    networks:
+      - hrva-drive-internal-data
+      - nginx-proxy_default
+    ports:
+      - "8090:80"   # host:container — point your reverse proxy / drive.hrva.cc at host port 8090
+    depends_on:
+      analysis:
+        condition: service_healthy
+
+networks:
+  nginx-proxy_default:
+    external: true
+  hrva-drive-internal-data:
+    driver: bridge

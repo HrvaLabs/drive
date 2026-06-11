@@ -1,0 +1,26 @@
+# Java / Maven
+target/
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Node
+node_modules/
+dist/
+*.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# IDE / OS
+.idea/
+.DS_Store
+
+# Large sample data (kept locally, not committed)
+data/*.csv
+data/exported_records/*.csv
+data/*.brc
+
+.od-skills

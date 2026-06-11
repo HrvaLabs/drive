@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0e14" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow" />
+
+    <title>HrvaDrive — OBD2 drive reports: maps, eco tips, insights</title>
+    <meta name="description" content="Upload a Car Scanner OBD2 drive export and get an instant report: distance and fuel cost, an eco-driving score, a route map with events, efficiency tips, and engine insights. Free, no account." />
+    <link rel="canonical" href="https://drive.hrva.cc/" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="author" href="/humans.txt" />
+    <meta name="application-name" content="HrvaDrive" />
+    <meta name="apple-mobile-web-app-title" content="HrvaDrive" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HrvaDrive" />
+    <meta property="og:title" content="HrvaDrive — OBD2 drive reports" />
+    <meta property="og:description" content="Turn your Car Scanner OBD2 drive logs into a clear report: fuel cost, eco score, route map, efficiency tips, and engine insights." />
+    <meta property="og:url" content="https://drive.hrva.cc/" />
+    <meta property="og:image" content="https://drive.hrva.cc/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HrvaDrive — OBD2 drive reports" />
+    <meta name="twitter:description" content="Turn your Car Scanner OBD2 drive logs into a clear report: fuel cost, eco score, route map, efficiency tips, and engine insights." />
+    <meta name="twitter:image" content="https://drive.hrva.cc/og-image.png" />
+
+    <!-- Structured data: the app entity (helps search + AI engines understand what this is) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "HrvaDrive",
+      "applicationCategory": "AutomotiveApplication",
+      "operatingSystem": "Web browser",
+      "url": "https://drive.hrva.cc/",
+      "description": "Upload a Car Scanner OBD2 drive export and get an instant report: distance and fuel cost, an eco-driving score, a route map with events, efficiency tips, and engine health insights.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "featureList": [
+        "Drive summary: distance, time, fuel, cost, economy",
+        "Route map with hard-brake, idle and coasting events",
+        "Eco-driving score and cost-saving tips",
+        "Engine and health insights: RPM, boost, coolant, battery",
+        "Vertical and horizontal CSV plus optional .brc vehicle decode",
+        "Save-as-PDF report"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "HrvaDrive",
+      "url": "https://drive.hrva.cc/",
+      "logo": "https://drive.hrva.cc/icon-512.png"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is HrvaDrive?", "acceptedAnswer": { "@type": "Answer", "text": "A free web tool that turns a Car Scanner OBD2 drive log into a readable report — drive summary, route map, eco and cost tips, and engine insights." } },
+        { "@type": "Question", "name": "What file do I upload?", "acceptedAnswer": { "@type": "Answer", "text": "A Car Scanner ELM OBD2 CSV export (vertical or horizontal layout). You can optionally add the .brc file to show your VIN and engine." } },
+        { "@type": "Question", "name": "Is my driving data private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. HrvaDrive is stateless — your drive is analysed and the report is returned to you; nothing is stored and no account is needed." } },
+        { "@type": "Question", "name": "Does it cost anything?", "acceptedAnswer": { "@type": "Answer", "text": "No. HrvaDrive is free to use." } },
+        { "@type": "Question", "name": "What can it tell me?", "acceptedAnswer": { "@type": "Answer", "text": "Your fuel cost and economy, an eco-driving score, where you braked hard or idled, your most efficient cruising speed, and engine-health flags like battery voltage." } }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="font-family: system-ui, sans-serif; color: #e9edf5; background: #0b0e14; min-height: 100vh; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center;">
+        <p style="max-width: 42ch; line-height: 1.6;">
+          <strong>HrvaDrive needs JavaScript.</strong><br />
+          Your drive is analysed in your browser session — nothing works without scripts enabled.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
