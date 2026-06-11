@@ -63,8 +63,9 @@ export default function SyncOverlay({ onClose, onSynced, initialCode, start = st
         <button className="overlay__close" aria-label="Close sync" onClick={onClose}>×</button>
         <h2 className="section-title">Sync devices</h2>
         <p className="muted">Your history moves <strong>directly between your devices</strong>, end-to-end
-          encrypted — the server only relays the connection and stores nothing. Both devices need the
-          app open, on the same network. Merging never deletes anything.</p>
+          encrypted — the server only relays the handshake and stores nothing. Both devices need the
+          app open (same Wi-Fi is most reliable). A public STUN server helps them find each other —
+          it sees your IP to set up the link, never your data. Merging never deletes anything.</p>
 
         {mode === 'idle' && (
           <div className="sync-actions">

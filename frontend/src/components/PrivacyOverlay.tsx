@@ -46,7 +46,9 @@ export default function PrivacyOverlay({ onClose, onClearAll, onBackup, onRestor
           <li><strong>"Decode VIN" is optional</strong> — pressing it sends that car's VIN to NHTSA (US gov) to look up make/model; it's the only time a VIN leaves your device.</li>
           <li><strong>Device sync is direct and end-to-end encrypted</strong> — your history travels
             browser-to-browser; the server only relays the connection handshake while both devices
-            are open and stores nothing.</li>
+            are open and stores nothing. To help the two browsers find each other it uses a public
+            <strong> STUN</strong> server, which sees your IP address (to set up the link) but never
+            your data.</li>
           <li>No other external services are contacted.</li>
         </ul>
         <h3 className="section-title">Terms of use</h3>

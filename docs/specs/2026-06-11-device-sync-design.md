@@ -19,9 +19,14 @@ either side disconnects). No accounts; the random pairing code IS the session se
   auto-joined) or types the code → joins the same relay room → SDP offer/answer + ICE over the
   relay → DataChannel `hrvadrive-sync` opens → **the relay is done**.
 - Rooms cap at 2 sockets (a third connection is rejected); codes are single-use.
-- **No STUN/TURN servers** (privacy: no third-party gets the IPs). With mDNS host candidates this
-  covers the actual use case — both devices on the same Wi-Fi. Cross-network sync is out of scope
-  (the panel says so).
+- **Public STUN, no TURN.** mDNS-only host candidates (the original no-STUN choice) failed across
+  real devices — Android + many Wi-Fi networks don't resolve the peer's `.local` name, so no
+  candidate pair forms and it hangs in "connecting" (observed Firefox↔Brave-Android). STUN gives
+  each browser a routable reflexive candidate. Honest tradeoff: the STUN server sees the IP making
+  a discovery request, **never the data** (that's TURN, which we don't use — data stays P2P + E2E
+  encrypted). Trickled ICE is buffered until the remote description is set, and a failed
+  addIceCandidate is non-fatal; a `failed` connectionState surfaces a clear message + the
+  Download/Restore fallback.
 
 ## Sync protocol (over the DataChannel)
 
@@ -53,12 +58,15 @@ payloads. nginx gets a `location /api/v1/sync/` block with `Upgrade`/`Connection
 ## Privacy
 
 Overlay bullet + PRIVACY.md note: sync is **direct device-to-device and end-to-end encrypted**;
-the server only relays the connection handshake while both devices are open and **stores
-nothing**; no third-party servers are involved (no STUN/TURN).
+our server only relays the connection handshake while both devices are open and **stores
+nothing**. A **public STUN** server is contacted to help the browsers find each other — it sees
+the IP making a discovery request but **never the data**; **no TURN** (data is never routed
+through a third party). Self-hosters can point STUN at their own server.
 
 ## Honest limits (stated in the panel)
 
-- Both devices must have the app open at the same time, on the same network.
+- Both devices must have the app open at the same time; same Wi-Fi is most reliable (STUN extends
+  reach but symmetric NAT without TURN can still block cross-network).
 - Merge is additive by id — deletions don't propagate (delete on both devices).
 - Cannot be end-to-end verified in jsdom/CI: the relay, the chunk protocol, and the UI states are
   tested; the full two-device handshake needs a manual run on real hardware (deploy checklist).

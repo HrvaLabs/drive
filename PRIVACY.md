@@ -64,7 +64,10 @@ or any non-essential tracking, that changes and consent would be required.
   your device, and only when you choose it. Nothing is stored on any server.
 - **Device sync (optional)** is **direct, browser-to-browser, end-to-end encrypted** (WebRTC
   DTLS). The server only relays the connection handshake between your two open devices and stores
-  nothing; no STUN/TURN third parties are used, so sync works when both devices share a network.
+  nothing. To help the two browsers find each other, a **public STUN server** (currently Google's)
+  is contacted — it sees the **IP address** making a discovery request but **never your data**,
+  which flows directly between the devices. No TURN/relay servers are used (your data is never
+  routed through a third party). A self-hosted instance can point this at its own STUN server.
 - No other external calls are made by the application.
 
 ## Your rights (GDPR / EU)
