@@ -15,7 +15,7 @@ your browser, not on a server.
 ## Project ownership and deployment
 
 HrvaDrive is a [HrvaLabs](https://hrvalabs.net/) project. Its public source
-repository will be hosted at [HrvaLabs/drive](https://github.com/HrvaLabs/drive).
+repository is [HrvaLabs/drive](https://github.com/HrvaLabs/drive).
 It has two independently published Docker images:
 
 - `ghcr.io/hrvalabs/hrva-drive-frontend:latest`
@@ -41,10 +41,12 @@ After transferring the repository to the HrvaLabs organization:
 1. Trigger a push to `main` and verify that **both** GHCR images were published.
 2. Make the two GHCR packages public (if acceptable) or configure Portainer's
    GHCR registry credentials with `read:packages`.
-3. Confirm that both new image references are pullable **on the deployment host**.
+3. Confirm that both new image references are pullable **on the deployment host**:
+   `docker pull ghcr.io/hrvalabs/hrva-drive-frontend:latest` and
+   `docker pull ghcr.io/hrvalabs/hrva-drive-analysis:latest`.
 4. Set both stack variables in Portainer, then pull and redeploy the stack.
-5. Check `/health` for the analysis API via the internal container/network and
-   confirm that the public frontend can analyze an uploaded OBD2 file.
+5. Verify the analysis API health check and confirm that the public frontend
+   at `https://drive.hrva.cc/` can analyze an uploaded OBD2 file.
 
 Only the analysis API and frontend are recreated; browser-stored drive history
 is unaffected. To roll back, restore the original personal-namespace image
