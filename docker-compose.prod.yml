@@ -11,6 +11,7 @@
 #   • Point your reverse proxy (Traefik / Nginx Proxy Manager) for drive.hrva.cc at the
 #     published frontend port below (host 8090). HTTPS is terminated by that proxy.
 #
+# Migration note: change image variables only after both org-owned packages are pullable.
 # Update later: in Portainer, "Pull and redeploy" (images are tagged :latest).
 
 name: hrva-drive
@@ -18,7 +19,8 @@ name: hrva-drive
 services:
   analysis:
     container_name: hrva-drive-analysis
-    image: ghcr.io/karlohrvacic/hrva-drive-analysis:latest
+    # Override only after verifying the new HrvaLabs GHCR image.
+    image: ${DRIVE_ANALYSIS_IMAGE:-ghcr.io/karlohrvacic/hrva-drive-analysis:latest}
     restart: unless-stopped
     networks:
       - hrva-drive-internal-data
@@ -30,7 +32,8 @@ services:
 
   frontend:
     container_name: hrva-drive-frontend
-    image: ghcr.io/karlohrvacic/hrva-drive-frontend:latest
+    # Override only after verifying the new HrvaLabs GHCR image.
+    image: ${DRIVE_FRONTEND_IMAGE:-ghcr.io/karlohrvacic/hrva-drive-frontend:latest}
     restart: unless-stopped
     networks:
       - hrva-drive-internal-data
