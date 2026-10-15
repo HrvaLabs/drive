@@ -10,6 +10,11 @@ permissions:
   contents: read
   packages: write
 
+# Cancel stale builds so an older commit cannot overwrite mutable :latest tags.
+concurrency:
+  group: drive-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   analysis:
     runs-on: ubuntu-latest
@@ -21,13 +26,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Normalize GHCR namespace
+        run: echo "IMAGE_NAMESPACE=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_ENV"
       - uses: docker/build-push-action@v6
         with:
           context: ./analysis
           push: ${{ github.event_name == 'push' }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.description=HrvaDrive analysis service
           tags: |
-            ghcr.io/${{ github.repository_owner }}/hrva-drive-analysis:latest
-            ghcr.io/${{ github.repository_owner }}/hrva-drive-analysis:${{ github.sha }}
+            ghcr.io/${{ env.IMAGE_NAMESPACE }}/hrva-drive-analysis:latest
+            ghcr.io/${{ env.IMAGE_NAMESPACE }}/hrva-drive-analysis:${{ github.sha }}
           platforms: linux/amd64,linux/arm64
 
   frontend:
@@ -40,11 +50,16 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Normalize GHCR namespace
+        run: echo "IMAGE_NAMESPACE=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_ENV"
       - uses: docker/build-push-action@v6
         with:
           context: ./frontend
           push: ${{ github.event_name == 'push' }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.description=HrvaDrive frontend service
           tags: |
-            ghcr.io/${{ github.repository_owner }}/hrva-drive-frontend:latest
-            ghcr.io/${{ github.repository_owner }}/hrva-drive-frontend:${{ github.sha }}
+            ghcr.io/${{ env.IMAGE_NAMESPACE }}/hrva-drive-frontend:latest
+            ghcr.io/${{ env.IMAGE_NAMESPACE }}/hrva-drive-frontend:${{ github.sha }}
           platforms: linux/amd64,linux/arm64
