@@ -7,8 +7,9 @@
     <meta name="color-scheme" content="dark" />
     <meta name="robots" content="index, follow" />
 
-    <title>HrvaDrive — OBD2 drive reports: maps, eco tips, insights</title>
-    <meta name="description" content="Upload a Car Scanner OBD2 drive export and get an instant report: distance and fuel cost, an eco-driving score, a route map with events, efficiency tips, and engine insights. Free, no account." />
+    <title>HrvaDrive | OBD2 Drive Reports and Analysis</title>
+    <meta name="description" content="Free OBD2 drive analysis for Car Scanner logs: fuel costs, route maps, eco-driving tips and engine insights. Made by Karlo Hrvačić at HrvaLabs." />
+    <meta name="author" content="Karlo Hrvačić" />
     <link rel="canonical" href="https://drive.hrva.cc/" />
 
     <!-- Icons -->
@@ -24,7 +25,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="HrvaDrive" />
-    <meta property="og:title" content="HrvaDrive — OBD2 drive reports" />
+    <meta property="og:title" content="HrvaDrive | OBD2 Drive Reports" />
     <meta property="og:description" content="Turn your Car Scanner OBD2 drive logs into a clear report: fuel cost, eco score, route map, efficiency tips, and engine insights." />
     <meta property="og:url" content="https://drive.hrva.cc/" />
     <meta property="og:image" content="https://drive.hrva.cc/og-image.png" />
@@ -34,7 +35,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="HrvaDrive — OBD2 drive reports" />
+    <meta name="twitter:title" content="HrvaDrive | OBD2 Drive Reports" />
     <meta name="twitter:description" content="Turn your Car Scanner OBD2 drive logs into a clear report: fuel cost, eco score, route map, efficiency tips, and engine insights." />
     <meta name="twitter:image" content="https://drive.hrva.cc/og-image.png" />
 
@@ -44,6 +45,8 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "HrvaDrive",
+      "creator": { "@type": "Person", "@id": "https://karlo.cc/#person", "name": "Karlo Hrvačić", "url": "https://karlo.cc/" },
+      "publisher": { "@type": "Organization", "name": "HrvaLabs", "url": "https://hrvalabs.net/" },
       "applicationCategory": "AutomotiveApplication",
       "operatingSystem": "Web browser",
       "url": "https://drive.hrva.cc/",
@@ -62,10 +65,10 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "WebSite",
       "name": "HrvaDrive",
       "url": "https://drive.hrva.cc/",
-      "logo": "https://drive.hrva.cc/icon-512.png"
+      "creator": { "@type": "Person", "@id": "https://karlo.cc/#person", "name": "Karlo Hrvačić", "alternateName": "Karlo Hrvacic", "url": "https://karlo.cc/" }
     }
     </script>
     <script type="application/ld+json">
@@ -83,12 +86,23 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- React replaces this static introduction once the application starts. -->
+      <main style="font: 16px/1.7 system-ui, sans-serif; color: #e9edf5; background: #0b0e14; min-height: 100vh; padding: clamp(32px,7vw,100px) 24px;">
+        <div style="max-width: 760px; margin: auto;">
+          <p style="color: #ff9f1c; font-size: 13px; letter-spacing: .09em;">HRVADRIVE · OBD2 REPORTS</p>
+          <h1 style="font-size: clamp(32px,5vw,58px); line-height: 1.12; margin: 18px 0 22px;">Understand your drive, not just the dashboard.</h1>
+          <p>HrvaDrive turns Car Scanner ELM OBD2 CSV exports into reports with route maps, fuel economy and cost estimates, eco-driving tips, and engine insights. It is free and does not require an account.</p>
+          <p>Your driving history stays in your browser. Uploaded logs are processed in memory by a stateless analysis service and are not stored by the application.</p>
+          <p>Created by <a href="https://karlo.cc/" style="color: #ffb34e;">Karlo Hrvačić</a> as a <a href="https://hrvalabs.net/" style="color: #ffb34e;">HrvaLabs</a> project. <a href="https://github.com/HrvaLabs/drive" style="color: #ffb34e;">Source code</a>.</p>
+        </div>
+      </main>
+    </div>
     <noscript>
       <div style="font-family: system-ui, sans-serif; color: #e9edf5; background: #0b0e14; min-height: 100vh; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center;">
         <p style="max-width: 42ch; line-height: 1.6;">
           <strong>HrvaDrive needs JavaScript.</strong><br />
-          Your drive is analysed in your browser session — nothing works without scripts enabled.
+          Your driving history stays on your device. Uploads are processed by a stateless analysis service. Enable JavaScript to use HrvaDrive.
         </p>
       </div>
     </noscript>
