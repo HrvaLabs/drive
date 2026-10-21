@@ -1,8 +1,8 @@
-fastapi~=0.115
-uvicorn[standard]~=0.34
-python-multipart~=0.0.9
-pytest~=8.3
+fastapi~=0.156
+uvicorn[standard]~=0.54
+python-multipart~=0.0.32
+pytest~=9.1
 httpx~=0.28
-pandas~=2.2
-numpy~=2.1
+pandas~=3.0
+numpy~=2.5
 reverse_geocoder~=1.5
