@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+User-agent: Bytespider
+Disallow: /
+
 Sitemap: https://drive.hrva.cc/sitemap.xml

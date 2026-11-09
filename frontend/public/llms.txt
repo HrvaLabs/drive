@@ -1,0 +1,18 @@
+# HrvaDrive
+
+> HrvaDrive turns an OBD2 drive log exported from the Car Scanner ELM OBD2 app into a drive report. It is free, needs no account, and keeps your drive history in your browser only.
+
+Upload a Car Scanner drive export (vertical or horizontal CSV, optionally with a .brc vehicle file) and get a report with distance, time, fuel and cost, economy, a route map with hard-brake, idle and coasting events, an eco-driving score with tips, a driving profile, gear usage and engine health insights (RPM, boost, coolant, battery). Reports can be saved as PDF, and two drives can be compared. The analysis server is stateless: the log is processed in memory and not stored. Drive history is saved in the browser (IndexedDB) and never leaves the device. The map loads tiles from OpenStreetMap. HrvaDrive is a hobby project provided as is, with no warranty, and is not affiliated with Car Scanner.
+
+- Name: HrvaDrive, a HrvaLabs project (https://hrvalabs.net/)
+- Author: Karlo Hrvačić (https://karlo.cc)
+- Licence: MIT
+
+## Pages
+
+- [HrvaDrive](https://drive.hrva.cc/): upload a drive log and read the report
+
+## Source
+
+- [Source code](https://github.com/HrvaLabs/drive): React frontend and Python analysis service
+- [Privacy notice](https://github.com/HrvaLabs/drive/blob/main/PRIVACY.md): what data is involved and where it goes
