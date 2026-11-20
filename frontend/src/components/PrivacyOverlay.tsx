@@ -30,7 +30,7 @@ export default function PrivacyOverlay({ onClose, onClearAll, onBackup, onRestor
         <h2 className="section-title">Privacy</h2>
         <p className="muted">HrvaDrive is a non-commercial hobby project, provided “as is”.</p>
         <ul className="privacy-list">
-          <li><strong>No accounts, no cookies, no tracking, no analytics.</strong></li>
+          <li><strong>No accounts, no cookies, no ads.</strong></li>
           <li><strong>The server is stateless.</strong> Your uploaded drive log — which can contain your
             vehicle’s VIN and GPS location — is processed in memory to build the report and is
             <strong> not stored</strong>.</li>
@@ -49,6 +49,11 @@ export default function PrivacyOverlay({ onClose, onClearAll, onBackup, onRestor
             are open and stores nothing. To help the two browsers find each other it uses a public
             <strong> STUN</strong> server, which sees your IP address (to set up the link) but never
             your data.</li>
+          <li><strong>Page visits are counted</strong> with Cloudflare Web Analytics, which Cloudflare adds to
+            every page of drive.hrva.cc. It sends the page address, the referrer and how long the page took
+            to load, and Cloudflare sees your IP address; it sets no cookies and stores nothing in your
+            browser. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank"
+            rel="noreferrer noopener">Cloudflare's privacy policy</a>.</li>
           <li>No other external services are contacted.</li>
         </ul>
         <h3 className="section-title">Terms of use</h3>
